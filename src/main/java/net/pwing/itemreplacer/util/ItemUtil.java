@@ -26,7 +26,7 @@ public class ItemUtil {
 
     private static Map<Attribute, String> attributeStringMap = initMap();
 
-    public static Map<Attribute, String> initMap() {
+    private static Map<Attribute, String> initMap() {
         Map<Attribute, String> attributeStringMap = new HashMap<Attribute, String>();
         attributeStringMap.put(Attribute.GENERIC_MAX_HEALTH, "generic.maxHealth");
         attributeStringMap.put(Attribute.GENERIC_FOLLOW_RANGE, "generic.followRange");
