@@ -56,7 +56,7 @@ public class PwingItemReplacer {
      */
     public void replaceItems(String path, FileConfiguration config, Player player) {
         // Loop through the configuration sections for the specified path
-        for (String section : config.getConfigurationSection("items").getKeys(false)) {
+        for (String section : config.getConfigurationSection(path).getKeys(false)) {
             boolean exactName = config.getBoolean(path + "." + section + ".to-replace.exact-name", false);
             boolean exactLore = config.getBoolean(path + "." + section + ".to-replace.exact-lore", false);
 
@@ -144,7 +144,7 @@ public class PwingItemReplacer {
                         return false;
 
                     // Check if the item display name contains what we want to replace
-                    if (!item.getItemMeta().getDisplayName().contains(toReplace.getItemMeta().getDisplayName()))
+                    if (!toReplace.getItemMeta().getDisplayName().contains(item.getItemMeta().getDisplayName()))
                         return false;
                 }
             }
@@ -171,8 +171,8 @@ public class PwingItemReplacer {
 
                     boolean contains = false;
                     // Check if the item lore contains what we want to replace
-                    for (String lore : toReplace.getItemMeta().getLore()) {
-                        if (item.getItemMeta().getLore().contains(lore))
+                    for (String lore : item.getItemMeta().getLore()) {
+                        if (toReplace.getItemMeta().getLore().contains(lore))
                             contains = true;
                     }
 

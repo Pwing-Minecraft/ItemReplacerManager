@@ -1,5 +1,6 @@
 package net.pwing.itemreplacer.util;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -18,7 +19,9 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -67,7 +70,7 @@ public class ItemUtil {
                     break;
                 case "name":
                 case "display-name":
-                    meta.setDisplayName(config.getString(configPath + "." + str));
+                    meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', config.getString(configPath + "." + str)));
                     break;
                 case "enchants":
                 case "enchantments":
@@ -83,7 +86,10 @@ public class ItemUtil {
                     }
                     break;
                 case "lore":
-                    meta.setLore(config.getStringList(configPath + "." + str));
+                    List<String> lore = config.getStringList(configPath + "." + str);
+                    List<String> newLore = new ArrayList<String>();
+                    lore.forEach(loreStr -> newLore.add(ChatColor.translateAlternateColorCodes('&', loreStr)));
+                    meta.setLore(newLore);
                     break;
                 case "unbreakable":
                     meta.setUnbreakable(config.getBoolean(configPath + "." + str));
